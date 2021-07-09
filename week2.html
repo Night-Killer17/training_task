@@ -1,0 +1,82 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+    <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+th {
+  text-align: left;
+}
+</style>
+    <div ng-app="angularapp1" ng-controller="firstcontroller">
+    <label>Name:</label>
+    <input type='text' id='name' />
+    <br>
+    <label>Email:</label>
+    <input type='text' id='email' />
+    <br>
+    <label>Password:</label>
+    <input type='password' id='pass'/>
+    <br>
+    <label>Mobile number:</label>
+    <input type='text' id='mobnumber' />
+    <br>
+    <label>Date of Birth:</label>
+    <input type='date' id='dob' />
+    <br>
+    <label>States:</label>
+    <select>
+        <option ng-repeat='states in statename'>
+            {{states}}
+        </option>
+    </select>
+    <br>
+    <label>City:</label>
+    <select>
+        <option ng-repeat='cities in cityname'>
+            {{cities}}
+        </option>
+    </select>
+    <br>
+    <button id="sortname">Sort By Name</button>
+        <button id="sortemail">Sort By Email</button>
+        <br>
+        <input type='text' ng-model="searchdata" placeholder="SEARCH DATA">
+         <table id="myTable">
+                <table style="width:60%">
+            <tr ng-repeat='students in studentdata | filter:searchdata | orderBy:"name"'>
+    <td>{{students.name}}</td>
+    <td>{{students.email}}</td>
+    <td>{{students.mobileno}}</td>
+    <td>{{students.dob}}</td>
+    <td>{{students.state}}</td>
+    <td>{{students.city}}</td>
+</table>
+</table>
+            <tr>
+            </div>
+<script>
+    var app = angular.module("angularapp1",[]);
+        app.controller('firstcontroller',function($scope)
+        {
+            $scope.statename=[ "Andhra Pradesh","Arunachal Pradesh","Bihar","Goa","Gujarat","Jammu and Kashmir","Karnataka","Kerala","Maharashtra","Punjab","Tamil Nadu","Uttar Pradesh","West Bengal"];
+            $scope.cityname=["Hyderabad","Itanagar","Patna","Panjim","Surat","Srinagar","Bengaluru","Thiruvananthapuram","Mumbai","Amritsar","Chennai","Lucknow","Kolkata"];
+            $scope.studentdata=[{'name':'Abhishek','email':'abhishek@gmail.com','mobileno':8379201749,'dob':'09/25/1999','state':'Maharashtra','city':'Mumbai'},
+            {'name':'Sumeet','email':'sumeet@gmail.com','mobileno':9028184789,'dob':'01/06/1997','state':'Maharashtra','city':'Mumbai'},
+            {'name':'Sohail','email':'sohail@gmail.com','mobileno':9927817329,'dob':'08/15/1998','state':'West Bengal','city':'Kolkata'},
+            {'name':'Amey','email':'amey@gmail.com','mobileno':7462801943,'dob':'03/29/1995','state':'Karnataka','city':'Bengaluru'},
+            {'name':'Dilip','email':'dilip@gmaill.com','mobileno':9284921856,'dob':'06/25/1999','state':'Tamil Nadu','city':'Chennai'},
+            {'name':'Ashish','email':'ashish@gmail.com','mobileno':9027451289,'dob':'04/12/1997','state':'Gujarat','city':'Surat'},
+            {'name':'Yash','email':'yash@gmail.com','mobileno':8174972345,'dob':'12/25/2000','state':'Andhra Pradesh','city':'Hyderabad'},
+            {'name':'Aryan','email':'aryan@gmail.com','mobileno':9816748235,'dob':'11/13/1998','state':'Maharashtra','city':'Mumbai'},
+            {'name':'Sahil','email':'sahil@gmail.com','mobileno':7226782175,'dob':'05/30/1999','state':'Bihar','city':'Patna'},
+            {'name':'Aakash','email':'aakash@gmaill.com','mobileno':9635906732,'dob':'10/27/1998','state':'Punjab','city':'Amritsar'}];
+        });
+    </script>
+</body>
+</html>
