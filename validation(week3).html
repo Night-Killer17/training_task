@@ -1,0 +1,69 @@
+
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+	<form ng-app="angularapp1" ng-controller="firstcontroller" name="validateform" novalidate>
+		<input type="text" name="user" ng-model="user" placeholder="UserName" required/>
+		<span style="color:red" ng-show="validateform.user.$invalid && validateform.user.$invalid">
+			<span ng-show="validateform.user.$error.required">Username is required</span>
+		</span>
+		<br>
+		<input type="email" name="email" ng-model="email" placeholder="Email" required/>
+        		<span style="color:red" ng-show="validateform.email.$invalid && validateform.email.$invalid">
+        		<span ng-show="validateform.email.$error.required">Email is required</span>
+
+			<span ng-show="validateform.email.$error.email">Email Format is Incorrect</span>
+</span><br>
+<input type="text" name="mobileno" ng-model="mobileno" placeholder="Mobile Number"/>
+		<br>
+		<input type="password" name="pswd" ng-model="pswd" placeholder="Password" required/>
+		<span style="color:red" ng-show="validateform.pswd.$invalid && validateform.pswd.$invalid">
+			<span ng-show="validateform.pswd.$error.required">Password is required</span>
+		</span>
+		<br>
+		<button ng-disabled="validateform.user.$invalid || validateform.email.$invalid || validateform.pswd.$invalid" ng-click="savedata()">SUBMIT</button>
+		<button ng-click="deletedata()">DELETE</button>
+		<table id="myTable">
+                <table style="width:60%">
+                	<tr>
+                	<th>Name</th>
+                	<th>Email</th>
+                	<th>Mobile no</th>
+                	</tr>
+                	<tr>
+            <td ng-repeat='names in namedata'>
+               {{names}}</td>
+            <td ng-repeat='emails in emaildata'>
+                {{emails}}</td>
+            <td ng-repeat='mobilenos in mobilenodata'>
+               {{mobilenos}}</td>
+            </tr>
+        </table>
+
+</form>
+		<script>
+		var app = angular.module("angularapp1",[]);
+		app.controller('firstcontroller',function($scope)
+		{  
+			$scope.user='';
+			$scope.email='';
+			$scope.mobileno='';
+			$scope.namedata=['abc'];
+			$scope.emaildata=['abc@gmail.com'];
+			$scope.mobilenodata=[8923451290];
+			$scope.savedata=function()
+			{
+				$scope.namedata.push($scope.user);
+				$scope.emaildata.push($scope.email);
+				$scope.mobilenodata.push($scope.mobileno);
+			}
+			$scope.deletedata=function()
+			{  $scope.indexat=$scope.namedata.indexOf($scope.user)
+				$scope.namedata.splice($scope.indexat,1);
+				$scope.emaildata.splice($scope.indexat,1);
+				$scope.mobilenodata.splice($scope.indexat,1);
+			}
+		});
+	</script>
+</body>
+</html>
