@@ -1,4 +1,3 @@
-
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <body>
@@ -26,9 +25,9 @@
 		<table id="myTable">
                 <table style="width:60%">
                 	<tr>
-                	<th>Name</th>
-                	<th>Email</th>
-                	<th>Mobile no</th>
+                	<td><b>Name</b></td>
+                	<td><b>Email</b></td>
+                	<td><b>Mobile no</b></td>
                 	</tr>
                 	<tr>
             <td ng-repeat='names in namedata'>
@@ -39,6 +38,8 @@
                {{mobilenos}}</td>
             </tr>
         </table>
+     </table>
+
 
 </form>
 		<script>
@@ -52,11 +53,13 @@
 			$scope.emaildata=['abc@gmail.com'];
 			$scope.mobilenodata=[8923451290];
 			$scope.savedata=function()
-			{
+			{ 
 				$scope.namedata.push($scope.user);
 				$scope.emaildata.push($scope.email);
 				$scope.mobilenodata.push($scope.mobileno);
+				
 			}
+
 			$scope.deletedata=function()
 			{  $scope.indexat=$scope.namedata.indexOf($scope.user)
 				$scope.namedata.splice($scope.indexat,1);
