@@ -36,6 +36,8 @@
                 {{emails}}</td>
             <td ng-repeat='mobilenos in mobilenodata'>
                {{mobilenos}}</td>
+                 <td><input type="button"  ng-click="remove($index)" value="Remove" ng-model='remove' /></td>
+
             </tr>
         </table>
      </table>
@@ -46,9 +48,6 @@
 		var app = angular.module("angularapp1",[]);
 		app.controller('firstcontroller',function($scope)
 		{  
-			$scope.user='';
-			$scope.email='';
-			$scope.mobileno='';
 			$scope.namedata=['abc'];
 			$scope.emaildata=['abc@gmail.com'];
 			$scope.mobilenodata=[8923451290];
@@ -57,7 +56,10 @@
 				$scope.namedata.push($scope.user);
 				$scope.emaildata.push($scope.email);
 				$scope.mobilenodata.push($scope.mobileno);
-				
+				$scope.user='';
+				$scope.email='';
+				$scope.mobileno='';
+				$scope.pswd='';
 			}
 
 			$scope.deletedata=function()
@@ -66,7 +68,15 @@
 				$scope.emaildata.splice($scope.indexat,1);
 				$scope.mobilenodata.splice($scope.indexat,1);
 			}
+			$scope.remove = function (index) {
+                 
+                     
+				$scope.namedata.splice($scope.indexat,1);
+				$scope.emaildata.splice($scope.indexat,1);
+				$scope.mobilenodata.splice($scope.indexat,1);
+                $scope.remove='';}
 		});
 	</script>
 </body>
 </html>
+
