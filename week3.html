@@ -1,0 +1,119 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+	<form ng-app="angularapp1" ng-controller="firstcontroller" name="validateform" novalidate>
+		<input type="text" name="nuser" ng-model="nuser" placeholder="UserName" required/>
+		<span style="color:red" ng-show="validateform.nuser.$invalid && validateform.nuser.$invalid">
+			<span ng-show="validateform.nuser.$error.required">Username is required</span>
+		</span>
+		<br>
+		<input type="email" name="email" ng-model="email" placeholder="Email" required/>
+        		<span style="color:red" ng-show="validateform.email.$invalid && validateform.email.$invalid">
+        		<span ng-show="validateform.email.$error.required">Email is required</span>
+
+			<span ng-show="validateform.email.$error.email">Email Format is Incorrect</span>
+</span><br>
+<input type="password" name="npswd" ng-model="npswd" placeholder="Password" required/>
+		<span style="color:red" ng-show="validateform.npswd.$invalid && validateform.npswd.$invalid">
+			<span ng-show="validateform.npswd.$error.required">Password is required</span>
+		</span>
+		<br>
+		<button ng-disabled="validateform.nuser.$invalid || validateform.email.$invalid || validateform.npswd.$invalid" ng-click="savedata()">SUBMIT</button>
+		<br><br>
+
+		<input type="text" name="user" ng-model="user" placeholder="UserName" required/>
+		<span style="color:red" ng-show="validateform.user.$invalid && validateform.user.$invalid">
+			<span ng-show="validateform.user.$error.required">Username is required</span>
+		</span>
+		<br>
+		<input type="password" name="pswd" ng-model="pswd" placeholder="Password" required/>
+		<span style="color:red" ng-show="validateform.pswd.$invalid && validateform.pswd.$invalid">
+			<span ng-show="validateform.pswd.$error.required">Password is required</span>
+		</span>
+		<br>
+		<button ng-disabled="validateform.user.$invalid || validateform.pswd.$invalid" ng-click="checkdata()" ng-model='submit'>LOGIN</button>
+		<br><br>
+		<p><h1><b>WELCOME TO MOBILE SHOP</b></h1></p>
+		<br><br>
+		<input type="text" name="pincode" ng-model="pincode" placeholder="Pincode"/>
+		<button ng-disabled="validateform.pincode.$invalid" ng-click="checkpin()">PINCODE</button>
+		<br><br>
+		<input type="text" name="searchmobile" ng-model="searchmobile" placeholder="Search Mobile"/>
+		<button ng-click="filterprice()" ng-model="filterprice">FILTER PRICE</button>
+			<br><br>
+		<div ng-repeat='mobiles in mobiledata | filter:searchmobile'>
+			<img ng-src="{{mobiles.Photo}}" />&emsp;<b>{{mobiles.Name}}</b>&emsp;<b>{{mobiles.Price}}</b>
+		<br><br><br>
+			</div>
+	</form>
+		<script>
+			
+    var app = angular.module("angularapp1",[]);
+        app.controller('firstcontroller',function($scope)
+        {
+        	
+            $scope.userdata=["abhishek","sumeet","amey","dilip"];
+            $scope.pswddata=[1234,1234,1234,1234];
+            $scope.emaildata=["abhishek@gmail.com","sumeet@gmail.com","amey@gmail.com","dilip@gmail.com"];
+            $scope.pindata=["400043","400089","400021","400091","400068","400021"];
+
+            $scope.savedata=function()
+			{ 
+				$scope.userdata.push($scope.nuser);
+				$scope.emaildata.push($scope.email);
+				$scope.pswddata.push($scope.npswd);
+				$scope.nuser='';
+				$scope.email='';
+				$scope.npswd='';
+			}
+
+            $scope.checkdata=function()
+            {   
+            	$scope.len = $scope.userdata.length
+				$scope.check = 0;
+				for(var i = 0; i < $scope.len; i++)
+				{
+					if ($scope.user == $scope.userdata[i]) {
+						
+						if($scope.pswd == $scope.pswddata[i])
+						{
+							alert("Login Successfull");
+							$scope.check = 1;
+						}
+					}
+
+				}
+				if ($scope.check == 0) {
+					alert("Invalid Username or Password")
+				}
+            }
+            $scope.checkpin=function()
+            
+            { 
+            	if ($scope.pindata.indexOf($scope.pincode) != -1) 
+                {
+                 alert('pin available');
+                 }
+                else
+                {
+                alert("Pin Unavailable");
+                }
+            
+            	}
+            	$scope.mobiledata= [
+                { MobileId: 1, Name: "Redmi 9 Power (Mighty Black, 6GB RAM, 128GB Storage)", Photo: "mobiles/61LHaUOhehL._AC_UY218_.jpg", Price:'₹12,999'},
+                {MobileId: 2, Name: "Nokia G20 Smartphone, Dual SIM 4G, 4GB RAM/64GB Storage, 48MP Quad Camera with 6.5” (16.51 cm) Screen | Silver", Photo: "mobiles/61NoYt2pvpS._AC_UY218_.jpg", Price:'₹12,990' },
+                {MobileId: 3, Name: "Redmi 9 (Carbon Black, 4GB RAM, 64GB Storage) | 5000 mAh| 2.3GHz Mediatek Helio G35 Octa core Processor", Photo: "mobiles/71A9Vo1BatL._AC_UY218_.jpg", Price:'₹8,999' },
+                {MobileId: 4, Name: "Samsung Galaxy M11 (Metallic Blue, 4GB RAM, 64GB Storage)", Photo: "mobiles/71GQUxuSpnS._AC_UY218_.jpg", Price:'₹10,499' },
+                {MobileId: 5, Name: "Samsung Galaxy M42 5G (Prism Dot Black, 6GB RAM, 128GB Storage)", Photo: "mobiles/71LweCKOpFL._AC_UY218_.jpg", Price:'₹21,999' },
+                {MobileId: 6, Name: "Redmi 9A (Nature Green, 2GB RAM, 32GB Storage) | 2GHz Octa-core Helio G25 Processor | 5000 mAh Battery", Photo: "mobiles/71sxlhYhKWL._AC_UY218_.jpg", Price:'₹6,799' },
+                {MobileId: 7, Name: "Samsung Galaxy M11 (Black, 4GB RAM, 64GB Storage)", Photo: "mobiles/710jkZNub3S._AC_UY218_.jpg", Price:'₹9,999' },
+                {MobileId: 8, Name: "APPLE iPhone 11 (Black, 64 GB)", Photo: "mobiles/apple-iphone-11-mhda3hn-a-original-imafwqepdb3fxtug.jpeg", Price:'₹49,999' },
+                {MobileId: 9, Name: "APPLE iPhone 12 Mini (White, 128 GB)", Photo: "mobiles/apple-iphone-12-mini-dummyapplefsn-original-imafwgbfhfevaajh.jpeg", Price:'₹72,900' },
+                {MobileId: 10, Name: "APPLE iPhone 11 Pro (Midnight Green, 64 GB)", Photo: "mobiles/iphone-11-pro-max-256-u-mwhm2hn-a-apple-0-original-imafkg2ftc5cze5n.jpeg", Price:'₹74,999' }
+                ];
+            
+        });
+    </script>
+</body>
+</html>
