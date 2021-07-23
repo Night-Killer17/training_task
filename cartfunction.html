@@ -1,0 +1,80 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<style>
+p.lm {
+  margin-left: 100px;
+}
+.btn-outline-blue:hover {
+    color: #fff;
+    background-color: #0081ff;
+    border-color: #000000;
+}
+</style>
+<body>
+	<form ng-app="angularapp1" ng-controller="firstcontroller" name="validateform" novalidate>
+		<p class="lm">
+			<img src="mobiles/istockphoto-1206806317-612x612.jpg" alt="cart" width="40" height="50">{{cartno}}
+			<div ng-repeat="cartitems in cartdata"><p class="lm">{{cartitems.mobileid}}{{cartitems.name}}</p></div>			<br>
+		
+			<br><br> 
+		<p class="lm"><input type="text" name="searchmobile" ng-model="searchmobile" placeholder="Search Mobile"/></p>
+			<br><br>
+			<div class="container">
+			<div class="row">
+		<div ng-repeat='mobiles in mobiledata | filter:searchmobile'>
+			<div class="col-md-4">
+			<img ng-src="{{mobiles.photo}}" />&emsp;<b><p>{{mobiles.name}}</p></b>&emsp;<b>{{mobiles.price}}</b>
+			<p><button ng-click='addtocart(mobiles,index)' ng-model='addcart' class="btn btn-outline-blue">ADD TO CART</button></p>
+			<p><button ng-click='removecart(mobiles,index)' ng-model='removecart' class="btn btn-outline-blue">REMOVE FROM CART</button></p>
+		<br><br><br>
+			</div>
+		</div>
+	</div>
+</div>
+	</form>
+	<script>
+    var app = angular.module("angularapp1",[]);
+        app.controller('firstcontroller',function($scope)
+        {
+        	$scope.cartno=0;
+        	$scope.cartdata=[];
+          	$scope.mobiledata= [
+                { mobileid: 0, name: "Redmi 9 Power (Mighty Black, 6GB RAM, 128GB Storage)", 'photo': "mobiles/61LHaUOhehL._AC_UY218_.jpg", price:'₹12,999'},
+                {mobileid: 1, name: "Nokia G20 Smartphone, Dual SIM 4G, 4GB RAM/64GB Storage, 48MP Quad Camera with 6.5” (16.51 cm) Screen | Silver", 'photo': "mobiles/61NoYt2pvpS._AC_UY218_.jpg", price:'₹12,990' },
+                {mobileid: 2, name: "Redmi 9 (Carbon Black, 4GB RAM, 64GB Storage) | 5000 mAh| 2.3GHz Mediatek Helio G35 Octa core Processor", 'photo': "mobiles/71A9Vo1BatL._AC_UY218_.jpg", price:'₹8,999' }
+                ];
+ 
+                $scope.addtocart=function(mobiles,index)
+                {
+                	$scope.cartno++;
+                	$scope.cartdata.push(mobiles);
+                	
+                }
+                $scope.removecart=function(mobiles,index)
+                { 
+                	if($scope.cartno==0)
+                	{
+                		console.log('1');
+                	}
+                	else
+                	{
+                		$scope.cartno--;
+                	}
+                	$scope.cartdata.splice(mobiles,1);
+                  
+                }
+            
+        });
+    </script>
+</body>
+</html>
