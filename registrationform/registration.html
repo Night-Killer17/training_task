@@ -1,0 +1,110 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-checkbox@2.0.0/dist/js/bootstrap-checkbox.js" defer></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+.btn-outline-blue:hover {
+    color: #fff;
+    background-color: #0081ff;
+    border-color: #000000;
+}
+input[type=text],input[type=email], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #043DA3;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+body {
+  background-color: navy;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<body>
+  <form ng-app="angularapp1" ng-controller="firstcontroller" name="validateform" novalidate>
+    <div class="signupbox" style="background-color: lightgreen; margin-right:50px;margin-left: 50px;margin-top: 50px;padding-top: 50px ;padding-bottom: 50px ;border-style: solid" >
+  <div style="margin-left: 100px">
+    <div style="margin-right: 100px">
+      <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" name="fname" ng-model="fname" placeholder="FirstName" required/>
+    <span style="color:red" ng-show="validateform.fname.$invalid && validateform.fname.$invalid">
+      <span ng-show="validateform.fname.$error.required">Firstname is required</span>
+    </span>
+    <input type="text" name="lname" ng-model="lname" placeholder="LastName" required/>
+    <span style="color:red" ng-show="validateform.lname.$invalid && validateform.lname.$invalid">
+      <span ng-show="validateform.lname.$error.required">Lastname is required</span>
+    </span>        
+    <input type="email" name="email" ng-model="email" placeholder="Email" required/>
+            <span style="color:red" ng-show="validateform.email.$invalid && validateform.email.$invalid">
+            <span ng-show="validateform.email.$error.required">Email is required</span>
+            <span ng-show="validateform.email.$error.email">Email Format is Incorrect</span>
+</span>
+<input type="text" name="mobileno" ng-model="mobileno" placeholder="Mobileno" required/>
+    <span style="color:red" ng-show="validateform.mobileno.$invalid && validateform.mobileno.$invalid">
+      <span ng-show="validateform.mobileno.$error.required">Mobileno is required</span>
+    </span>
+    <input type="password" name="pswd" ng-model="pswd" placeholder="Password" required/>
+    <span style="color:red" ng-show="validateform.pswd.$invalid && validateform.pswd.$invalid">
+      <span ng-show="validateform.pswd.$error.required">Password is required</span>
+    </span>
+    <input type="text" name="city" ng-model="city" placeholder="City" required/>
+    <span style="color:red" ng-show="validateform.city.$invalid && validateform.city.$invalid">
+      <span ng-show="validateform.city.$error.required">City is required</span>
+    </span>
+    <br>
+    <input type="checkbox" name="check" ng-model="check" required/>&emsp;<b>Click here to agree with the terms and conditions</b>
+      <span style="color:red" ng-show="validateform.check.$error.required">Check the box is required</span>
+      <button ng-disabled="validateform.fname.$invalid || validateform.email.$invalid || validateform.pswd.$invalid || validateform.mobileno.$invalid || validateform.city.$invalid || validateform.lname.$invalid" ng-click="savedata()">SUBMIT</button>{{registeredmsg}}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+  </form>
+  <script>
+    var app = angular.module("angularapp1",[]);
+        app.controller('firstcontroller',function($scope)
+        {$scope.savedata=function()
+            {
+              $scope.registeredmsg="USER REGISTRATION SUCCESSFUL";
+              localStorage.setItem('fname',$scope.fname);
+            localStorage.setItem('lname',$scope.lname);
+            localStorage.setItem('email',$scope.email);
+            localStorage.setItem('mobileno',$scope.mobileno);
+            localStorage.setItem('city',$scope.city);
+            localStorage.setItem('pswd',$scope.pswd);
+            location.href="userprofile.html";
+            }
+            });
+  </script>
+  </body>
+  </html>
