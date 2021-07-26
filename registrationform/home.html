@@ -1,0 +1,109 @@
+<!-- Assignment work to be done right now
+3 things:
+Home
+Registration Form
+User Profile
+
+Home Screen:
+1. Create a menu bar with 5 items - Font size: 14px and color white
+2. Create an image slider with 3 images - height of the slider: 400px
+3. Create a button with radius: 20px and and black color
+4. Once the button is clicked, a registration form should open
+5. Make use of container and row of the bootstrap classes
+Registration Form:
+1. Create a form with 9 fields - First Name, Last Name, Email, Mobile No, Password, Confirm Password, City, Checkbox (Agree terms and conditions) and a submit button
+2. Form background color should be navy blue and the font size should be 16px.
+3. Use placeholder in the input of the form
+4. Submit button should have the radius: 20px and light blue background color of the button
+5. Save the data on clicking on submit in local storage
+6. Form validations should be present
+User Profile:
+1. Show a default image of user with width: 200px and height: 200px
+2. Show details of the form in a structured layout (properly aligned)
+3. All the data will be fetched from the local storage 
+Under user profile:
+Give an edit functionality to edit user records.-->
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-checkbox@2.0.0/dist/js/bootstrap-checkbox.js" defer></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+.navbar-custom .navbar-text {
+    font-size: 14px;
+}
+button {
+  background-color: #000000;
+  border-radius: 20px;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  text-align:  center;
+  display: inline-block;
+  border: 20px yellow;
+
+}
+button:hover {
+  opacity: 0.8;
+}  
+	</style>
+	<body>
+		<form ng-app="angularapp1" ng-controller="firstcontroller" name="validateform" novalidate>
+		<nav class="navbar navbar-custom bg-white">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">User Registration</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="userprofile.html">User Profile</a></li>
+    </ul>
+  </div>
+</nav>
+<center>
+  <button ng-model="openform" ng-click="openform()">Click here</button>
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="mobiles/Chrysanthemum.jpg" style="width:100%; height:600px;">
+    </div>
+
+    <div class="item">
+      <img src="mobiles/Desert.jpg" style="width:100%; height:600px;">
+    </div>
+
+    <div class="item">
+      <img src="mobiles/Hydrangeas.jpg" style="width:100%; height:600px;">
+    </div>
+  </div>
+</div>
+</div>
+</form>
+<script>
+	var app = angular.module("angularapp1",[]);
+        app.controller('firstcontroller',function($scope)
+        {
+        	$scope.openform=function()
+        	{
+        	location.href="registration.html";
+
+        	}
+        });
+	</script>
+</body>
+</html>
